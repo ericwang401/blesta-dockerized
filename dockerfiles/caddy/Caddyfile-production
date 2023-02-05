@@ -1,0 +1,6 @@
+{$APP_URL} {
+    root * /var/www/blesta
+    php_fastcgi php:9000
+    encode gzip
+    file_server
+}

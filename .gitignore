@@ -1,0 +1,4 @@
+/src
+/dockerfiles/caddy/data
+/dockerfiles/mysql/data
+.env

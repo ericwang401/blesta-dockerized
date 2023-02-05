@@ -1,0 +1,43 @@
+services:
+  caddy:
+    build:
+      context: ./dockerfiles/caddy
+      args:
+        - APP_ENV=$APP_ENV
+    restart: unless-stopped
+    volumes:
+      - ./src:/var/www/
+      - ./dockerfiles/caddy/data/config:/config
+      - ./dockerfiles/caddy/data/data:/data
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - php
+    env_file: .env
+  php:
+    build:
+      context: ./dockerfiles/php
+      args:
+        - APP_ENV=$APP_ENV
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+       - ./src:/var/www/
+    expose:
+      - 9000
+    depends_on:
+      - database
+    env_file: .env
+  database:
+    image: mysql:8.0.29
+    restart: unless-stopped
+    volumes:
+      - ./dockerfiles/mysql/data:/var/lib/mysql/
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
