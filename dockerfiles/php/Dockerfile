@@ -2,6 +2,8 @@ FROM php:8.1-fpm-alpine
 
 ARG APP_ENV
 
+COPY ./php.ini-* /usr/local/etc/php
+
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN install-php-extensions gmp pdo_mysql curl imap ldap soap gd imap mailparse sourceguardian

@@ -29,6 +29,14 @@ services:
     depends_on:
       - database
     env_file: .env
+  cron:
+    build: ./dockerfiles/cron
+    restart: unless-stopped
+    volumes:
+       - ./src:/var/www/
+    depends_on:
+      - php
+      - database
   database:
     image: mysql:8.0.29
     restart: unless-stopped
