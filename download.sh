@@ -35,10 +35,7 @@ echo "Creating logs folder"
 mkdir src/logs_blesta
 
 echo "Applying file permissions"
-chmod -R o+w src/blesta/config/
-chmod -R o+w src/blesta/cache/
-chmod -R o+w src/uploads
-chmod -R o+w src/logs_blesta
+chmod -R o+w src/
 
 echo -e "\033[42;37m DOWNLOAD COMPLETE \033[0m"
 echo "Please run the following command to continue: chmod +x ./configure.sh && ./configure.sh"
