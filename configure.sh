@@ -56,7 +56,7 @@ echo "Waiting 15s for database to initialize"
 sleep 15
 
 echo "Running Blesta installation command"
-docker compose exec php php ./blesta/index.php install -dbhost database -dbport 3306 -dbname "$db_database" -dbuser "$db_username" -dbpass "$db_password" -hostname "$app_url" -docroot /var/www
+docker compose exec php php ./blesta/index.php install -dbhost database -dbport 3306 -dbname "$db_database" -dbuser "$db_username" -dbpass "$db_password" -hostname "$app_url" -docroot /var/www/blesta
 
 echo -e "\033[42;37m CONFIGURATION COMPLETE \033[0m"
 echo "Register your Blesta installation by going to $app_url/admin/login/ in your browser"
